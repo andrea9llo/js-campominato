@@ -29,7 +29,10 @@ var numUtente = [];
 var beccato = false;
 // creo il ciclo e chiedo all utente di inserire un numero
 // fino a quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-while (numUtente.length < 84 && beccato == false) {
+while (numUtente.length < 4 && beccato == false) {
+  if (numUtente.length === 4) {
+    console.log("hai vinto");
+  }
   var numInse = parseInt(prompt("inserisci un numero da 1 a 100"));
   // con la funzione controllo i numeri inseriti dall utente non siano uguali a queli gia inseriti e poi lo verifico con la condizione
   var controlNumUT = controlliArray(numInse,numUtente);
