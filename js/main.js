@@ -26,30 +26,33 @@ console.log(numeri);
 // chiedo all utente di inserire un numero
 // fino a quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 var numUtente = [];
-
+var beccato = false;
 var j = 0;
-while (j < 5 && contNumVie == false) {
+while (j < 84 && beccato == false) {
   var numInse = parseInt(prompt("inserisci un numero da 1 a 100"));
-  // controllo se non inserisco 2 numeri uguali
+  // creo la variabile punti
+  var punti = j ;
+  // con la funzione controllo i numeri inseriti dall utente non siano uguali a queli gia inseriti e poi lo verifico con la condizione
   var controlNumUT = controlliArray(numInse,numUtente);
-  if (controlNumUT == false) {
-    numUtente.push(numInse);
-  } else {
+  // con la funzione  controllo i numeri inseriti dall utente non si trovano nell array bomba e poi lo verifico con la condizione
+  var contNumVie = controlliArray(numInse,numeri);
+  // controllo se il numero che ho inserito sia vero  allora ripeto un altro numero e vado avanti
+  if (controlNumUT == true) {
     alert("Hai già inserito questo numero " + numInse + " inserisci un altro numero e continua" );
     j--;
-  }
-  // controllo se non inserisco un numero vietato
-  var contNumVie = controlliArray(numInse,numeri);
-  var found = false;
-  if (contNumVie == false) {
-    numUtente.push(numInse);
-  } else {
+      // controllo se  il numero vietato è vero allora ho perso e esco dal ciclo
+  } else if (contNumVie == true) {
+    beccato = true;
     alert(numInse + " questo numero è un numero bomba,hai perso");
+    // se non ho perso allora pushio il numero inserito nell array dell utente
+  } else {
+    numUtente.push(numInse);
   }
   j++;
 
 }
 console.log(numUtente);
+console.log("hai totalizzato " + punti + " punti");
 
 
 // creo una funzione per generare 16 numeri casuali
