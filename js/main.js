@@ -29,10 +29,7 @@ var numUtente = [];
 var beccato = false;
 // creo il ciclo e chiedo all utente di inserire un numero
 // fino a quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
-while (numUtente.length < 4 && beccato == false) {
-  if (numUtente.length === 4) {
-    console.log("hai vinto");
-  }
+while (numUtente.length < 84 && beccato == false) {
   var numInse = parseInt(prompt("inserisci un numero da 1 a 100"));
   // con la funzione controllo i numeri inseriti dall utente non siano uguali a queli gia inseriti e poi lo verifico con la condizione
   var controlNumUT = controlliArray(numInse,numUtente);
@@ -41,16 +38,17 @@ while (numUtente.length < 4 && beccato == false) {
   // controllo se il numero che ho inserito sia vero  allora ripeto un altro numero e vado avanti
   if (controlNumUT == true) {
     alert("Hai già inserito questo numero " + numInse + " inserisci un altro numero e continua" );
-    // numUtente.length --;
       // controllo se  il numero vietato è vero allora ho perso e esco dal ciclo
   } else if (contNumVie == true) {
     beccato = true;
     alert(numInse + " questo numero è un numero bomba,hai perso");
     // se non ho perso allora pushio il numero inserito nell array dell utente
-  } else {
+  } else if (controlNumUT == false && contNumVie == false) {
     numUtente.push(numInse);
+    console.log(numUtente.length);
+  } if (numUtente.length === 84) {
+    console.log("Complimenti hai evitato tutte le bombe...HAI VINTO!!!");
   }
-
 }
 console.log(numUtente);
 console.log("hai totalizzato " + numUtente.length + " punti");
